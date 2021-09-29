@@ -1,0 +1,85 @@
+<div class="row align-items-start">
+  <h2>Historic Matches By Country</h2>
+  <div class="col">
+    <mat-form-field *ngIf="loadedCountries">
+      <mat-select
+        formControlName="country"
+        placeholder="Select A Country"
+        [(value)]="selectedCountry"
+        (selectionChange)="updateMatches()"
+      >
+        <mat-option *ngFor="let country of loadedCountries" [value]="country">
+          {{ country }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span class="ms-2 me-2">And</span>
+    <mat-form-field>
+      <mat-label>Filter Matches By Opponent </mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Filter by team name"
+      />
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="col">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="home_team">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Home Team</th>
+        <td mat-cell *matCellDef="let element">{{ element.home_team }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="away_team">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Away Team</th>
+        <td mat-cell *matCellDef="let element">{{ element.away_team }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="home_score">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Home Score</th>
+        <td mat-cell *matCellDef="let element">{{ element.home_score }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="away_score">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Away Score</th>
+        <td mat-cell *matCellDef="let element">{{ element.away_score }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tournament">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tournament</th>
+        <td mat-cell *matCellDef="let element">{{ element.tournament }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
+        <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+        <td mat-cell *matCellDef="let element">{{ element.country }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="neutral">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Neutral</th>
+        <td mat-cell *matCellDef="let element">{{ element.neutral }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>
