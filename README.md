@@ -20,11 +20,11 @@ By default, the backend server should start at `http://127.0.0.1:8000`, but if y
 
 ## Frontend Design
 
-This is data dashboard built with Angular, Angular Material, Bootstrap, and Chart.js.
+This is a data dashboard built with Angular, Angular Material, Bootstrap, and Chart.js.
 
 It displays:
 
-- A line chart of the number of international soccermatches over time (checkout out that dip last year due to covid!)
+- A line chart of the number of international socce rmatches over time (check out out that dip last year due to covid!)
 - A bar graph of the 10 countries that have played the most socccer matches in history
 - A table of all international soccer matches every played. This table allows you to select the country you want to see matches for, and then filter based substrings of country names to see particular oponents the selected country has played against.
 
