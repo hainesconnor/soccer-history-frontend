@@ -15,17 +15,30 @@ export class MatchesService {
 
   matchesHistory() {
     return this._http
-      .get(`${baseUrl}/matches_test`)
+      .get(`${baseUrl}/matches/`)
       .pipe(map((result) => result))
       .pipe(catchError(this.handleError<string>('Get matches history')));
   }
 
   matchesHistoryByCountry(country: string) {
-    console.log(country);
     return this._http
-      .get(`${baseUrl}/matches`)
+      .get(`${baseUrl}/matches/${country}`)
       .pipe(map((result) => result))
       .pipe(catchError(this.handleError<string>('Get matches history')));
+  }
+
+  matchesPerYear() {
+    return this._http
+      .get(`${baseUrl}/matches_per_year/`)
+      .pipe(map((result) => result))
+      .pipe(catchError(this.handleError<string>('Get matches per year')));
+  }
+
+  mostMatchesPlayed(limit: number = 10) {
+    return this._http
+      .get(`${baseUrl}/matches_played/?limit=${limit}`)
+      .pipe(map((result) => result))
+      .pipe(catchError(this.handleError<string>('Get most matches played')));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

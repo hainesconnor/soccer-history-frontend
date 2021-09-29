@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatchesService } from 'src/app/matches.service';
+import { CountriesService } from 'src/app/countries.service';
 
 interface Match {
   date?: string;
@@ -37,12 +38,15 @@ export class TableComponent implements OnInit {
   dataSource = new MatTableDataSource<Match>(this.ELEMENT_DATA);
 
   loadedCountries!: string[];
-  selectedCountry: string = 'All';
+  selectedCountry!: string;
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
-  constructor(private _matches: MatchesService) {
+  constructor(
+    private _matches: MatchesService,
+    private _countries: CountriesService
+  ) {
     (this.dataSource.filterPredicate as any) = (data: any, filter: string) => {
       return (
         data.home_team?.toLowerCase().includes(filter) ||
@@ -52,10 +56,12 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadedCountries = ['usa', 'eng'];
+    this.loadedCountries = [];
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.getMatches();
+    this.selectedCountry = 'England';
+    this.updateMatches();
+    this.getCountries();
   }
 
   getMatches() {
@@ -70,6 +76,12 @@ export class TableComponent implements OnInit {
       .subscribe((res) => {
         this.dataSource.data = res as Match[];
       });
+  }
+
+  getCountries() {
+    this._countries.getCountries().subscribe((res) => {
+      this.loadedCountries = res as string[];
+    });
   }
 
   applyFilter(event: Event) {

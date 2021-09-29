@@ -1,27 +1,29 @@
-<div class="col">
-  <mat-form-field>
-    <mat-label>Filter Matches </mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Filter by team name"
-    />
-  </mat-form-field>
-</div>
+<div class="row align-items-start">
+  <div class="col-3">
+    <mat-form-field *ngIf="loadedCountries">
+      <mat-select
+        formControlName="country"
+        placeholder="Select A Country"
+        [(value)]="selectedCountry"
+        (selectionChange)="updateMatches()"
+      >
+        <mat-option *ngFor="let country of loadedCountries" [value]="country">
+          {{ country }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-<div class="col">
-  <mat-form-field *ngIf="loadedCountries">
-    <mat-select
-      formControlName="country"
-      placeholder="Select A Country"
-      [(value)]="selectedCountry"
-      (selectionChange)="updateMatches()"
-    >
-      <mat-option *ngFor="let country of loadedCountries" [value]="country">
-        {{ country }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div class="col-3">
+    <mat-form-field>
+      <mat-label>Filter Matches By Opponent </mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Filter by team name"
+      />
+    </mat-form-field>
+  </div>
 </div>
 
 <div class="col">

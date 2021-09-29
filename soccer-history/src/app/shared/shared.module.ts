@@ -20,6 +20,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { BarGraphComponent } from './widgets/bar-graph/bar-graph.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
     FooterComponent,
     ChartComponent,
     TableComponent,
+    BarGraphComponent,
   ],
   imports: [
     CommonModule,
@@ -46,7 +48,13 @@ import { MatSelectModule } from '@angular/material/select';
     HighchartsChartModule,
     HttpClientModule,
   ],
-  exports: [HeaderComponent, FooterComponent, ChartComponent, TableComponent],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    ChartComponent,
+    TableComponent,
+    BarGraphComponent,
+  ],
   providers: [MatchesService],
 })
 export class SharedModule {}
