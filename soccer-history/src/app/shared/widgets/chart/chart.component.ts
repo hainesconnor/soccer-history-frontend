@@ -20,9 +20,11 @@ export class ChartComponent implements OnInit {
     this._matches.matchesPerYear().subscribe((res) => {
       this.allDates = (res as []).map((res) => res['year']);
       this.numberOfMatches = (res as []).map((res) => res['number_of_matches']);
-      // Remove current year
+
+      // Remove current year from chart
       let dates = this.allDates.slice(0, -1);
       let matches = this.numberOfMatches.slice(0, -1);
+
       // Configure chart
       this.chart = new Chart('lineChart', {
         type: 'line',

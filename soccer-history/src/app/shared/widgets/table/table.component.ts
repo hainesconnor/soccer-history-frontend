@@ -1,20 +1,21 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+
 import { MatchesService } from 'src/app/matches.service';
 import { CountriesService } from 'src/app/countries.service';
 
 interface Match {
-  date?: string;
-  home_team?: string;
-  away_team?: string;
-  home_score?: string;
-  away_score?: string;
-  tournament?: string;
-  city?: string;
-  coutnry?: string;
-  netural?: boolean;
+  date: string;
+  home_team: string;
+  away_team: string;
+  home_score: string;
+  away_score: string;
+  tournament: string;
+  city: string;
+  coutnry: string;
+  netural: boolean;
 }
 
 @Component({
@@ -62,12 +63,6 @@ export class TableComponent implements OnInit {
     this.selectedCountry = 'England';
     this.updateMatches();
     this.getCountries();
-  }
-
-  getMatches() {
-    this._matches.matchesHistory().subscribe((res) => {
-      this.dataSource.data = res as Match[];
-    });
   }
 
   updateMatches() {

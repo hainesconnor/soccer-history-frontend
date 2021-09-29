@@ -1,5 +1,6 @@
 <div class="row align-items-start">
-  <div class="col-3">
+  <h2>Historic Matches By Country</h2>
+  <div class="col">
     <mat-form-field *ngIf="loadedCountries">
       <mat-select
         formControlName="country"
@@ -12,9 +13,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
-
-  <div class="col-3">
+    <span class="ms-2 me-2">And</span>
     <mat-form-field>
       <mat-label>Filter Matches By Opponent </mat-label>
       <input
