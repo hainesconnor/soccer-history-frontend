@@ -10,7 +10,7 @@ Currently, this project is only setup to be run locally.
 
 First, spin up the backend, following the instructions after clicking on the backend link above.
 
-Second, clone this repo, then `cd` into `soccer-history` and then run `ng-serve` to spin up a local frontend server on `localhost:4200`
+Second, clone this repo, then `cd` into `soccer-history`, run `npm i` to install dependencies, and then run `ng-serve` to spin up a local frontend server on `localhost:4200`
 
 Note: You'll need to have NPM and the Angular CLI installed for this to work. [Installation Instructions Here](angular.io/guide/setup-local)
 
